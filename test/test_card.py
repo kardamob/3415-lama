@@ -51,7 +51,7 @@ def test_validation():
     with pytest.raises(ValueError):
         Card(1)
     with pytest.raises(ValueError):
-        Card(10)
+        Card(7)
     with pytest.raises(ValueError):
         Card('3')
 
