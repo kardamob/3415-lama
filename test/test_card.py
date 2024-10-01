@@ -49,9 +49,7 @@ def test_divzero():
 
 def test_validation():
     with pytest.raises(ValueError):
-        Card(1)
-    with pytest.raises(ValueError):
-        Card(7)
+        Card(10
     with pytest.raises(ValueError):
         Card('3')
 

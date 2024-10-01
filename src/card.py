@@ -30,7 +30,7 @@ class Card:
 
     @staticmethod
     def load(text: str):
-        """From '3' to Card(3)."""
+        """From '4' to Card(4)."""
         return Card(number=int(text[0]))
 
     def can_play_on(self, other: Self) -> bool:
