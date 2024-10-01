@@ -35,7 +35,9 @@ class Card:
 
     def can_play_on(self, other: Self) -> bool:
         """Можно ли играть карту self на карту other."""
-        return  self.number == other.number or self.number == other.number + 1
+        if self.number < 7:
+            return  self.number == other.number or self.number == other.number + 1
+        return self.number == other.number or self.number == 1
 
     @staticmethod
     def all_cards(numbers: None | list[int] = None):
