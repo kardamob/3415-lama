@@ -49,7 +49,7 @@ def test_divzero():
 
 def test_validation():
     with pytest.raises(ValueError):
-        Card(10
+        Card(10)
     with pytest.raises(ValueError):
         Card('3')
 
@@ -70,19 +70,21 @@ def test_play_on():
 def test_all_cards():
     cards = Card.all_cards(numbers=[5, 2, 7])
     # print(cards)
-    expected_cards = [
+    cnt_of_one_type = Card.count_cards_of_one_type
+    expected_cards = cnt_of_one_type*[
         Card.load('5'),
         Card.load('2'),
         Card.load('7'),
     ]
     assert cards == expected_cards
 
+    cnt_of_types = Card.count_of_types
     cards = Card.all_cards()
-    assert len(cards) == 8 * 7
+    assert len(cards) == cnt_of_one_type * cnt_of_types
 
 
 def test_score():
     c = Card(7)
-    assert 7 == c.score()
+    assert 10 == c.score()
     c = Card(3)
     assert 3 == c.score()

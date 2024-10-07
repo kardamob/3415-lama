@@ -4,6 +4,12 @@ from typing import Self
 
 class Card:
     NUMBERS = list(range(1,8))
+    # usual cards = 1,2,3,4,5,6 | unusual card (Lama) = 7
+    max_value_of_usual_cards = 6
+    score_of_lama = 10
+    count_cards_of_one_type = 8
+    count_of_types = 7
+
     def __init__(self, number: int):
         if number not in Card.NUMBERS:
             raise ValueError
@@ -35,7 +41,7 @@ class Card:
 
     def can_play_on(self, other: Self) -> bool:
         """Можно ли играть карту self на карту other."""
-        if self.number < 7:
+        if self.number <= Card.max_value_of_usual_cards:
             return  self.number == other.number or self.number == other.number + 1
         return self.number == other.number or self.number == 1
 
@@ -44,16 +50,16 @@ class Card:
         if numbers is None:
             numbers = Card.NUMBERS
         # cards = []
-        # for i in range(8):
+        # for i in range(Card.count_cards_of_one_type):
         #     for num in numbers:
         #         cards.append(Card(number=num))
-        cards = [Card(number=num) for i in range(8) for num in numbers]
+        cards = [Card(number=num) for i in range(Card.count_cards_of_one_type) for num in numbers]
         return cards
 
     def score(self):
         """Штрафные очки за карту."""
-        if self.number < 7:
+        if self.number <= Card.max_value_of_usual_cards:
             return self.number
         # else:
         #     return 10
-        return 10
+        return Card.score_of_lama
