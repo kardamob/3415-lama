@@ -1,9 +1,10 @@
 """Карты LAMA."""
+
 from typing import Self
 
 
 class Card:
-    NUMBERS = list(range(1,8))
+    NUMBERS = list(range(1, 8))
     # usual cards = 1,2,3,4,5,6 | unusual card (Lama) = 7
     max_value_of_usual_cards = 6
     score_of_lama = 10
@@ -17,19 +18,19 @@ class Card:
 
     def __repr__(self):
         # '6'
-        return f'{self.number}'
+        return f"{self.number}"
 
     def __eq__(self, other):
         if isinstance(other, str):
             other = Card.load(other)
         return self.number == other.number
 
-    # def __lt__(self, other):
-    #     if self.number == other.number or self.number == other.number + 1:
-    #         return self.number < other.number
-    #     ind_self = self.NUMBERS.index(self.number)
-    #     ind_other = self.NUMBERS.index(other.number)
-    #     return ind_self < ind_other
+    def __lt__(self, other):
+        if self.number == other.number or self.number == other.number + 1:
+            return self.number < other.number
+        ind_self = self.NUMBERS.index(self.number)
+        ind_other = self.NUMBERS.index(other.number)
+        return ind_self < ind_other
 
     def save(self):
         return repr(self)
@@ -53,7 +54,11 @@ class Card:
         # for i in range(Card.count_cards_of_one_type):
         #     for num in numbers:
         #         cards.append(Card(number=num))
-        cards = [Card(number=num) for i in range(Card.count_cards_of_one_type) for num in numbers]
+        cards = [
+            Card(number=num)
+            for _ in range(Card.count_cards_of_one_type)
+            for num in numbers
+        ]
         return cards
 
     def score(self):
@@ -61,5 +66,5 @@ class Card:
         if self.number <= Card.max_value_of_usual_cards:
             return self.number
         # else:
-        #     return 10
+        #     return Card.score_of_lama (= 10)
         return Card.score_of_lama

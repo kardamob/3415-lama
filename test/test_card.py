@@ -2,6 +2,7 @@ import pytest
 
 from src.card import Card
 
+
 def test_init():
     c = Card(3)
     assert c.number == 3
@@ -9,12 +10,12 @@ def test_init():
 
 def test_save():
     c = Card(3)
-    assert repr(c) == '3'
-    assert c.save() == '3'
+    assert repr(c) == "3"
+    assert c.save() == "3"
 
     c = Card(7)
-    assert repr(c) == '7'
-    assert c.save() == '7'
+    assert repr(c) == "7"
+    assert c.save() == "7"
 
 
 def test_eq():
@@ -31,11 +32,11 @@ def test_eq():
 
 
 def test_load():
-    s = '5'
+    s = "5"
     c = Card.load(s)
     assert c == Card(5)
 
-    s = '7'
+    s = "7"
     c = Card.load(s)
     assert c == Card(7)
 
@@ -51,14 +52,14 @@ def test_validation():
     with pytest.raises(ValueError):
         Card(10)
     with pytest.raises(ValueError):
-        Card('3')
+        Card("3")
 
 
 def test_play_on():
-    c1 = Card.load('1')
-    c2 = Card.load('2')
-    c3 = Card.load('3')
-    c4 = Card.load('4')
+    c1 = Card.load("1")
+    c2 = Card.load("2")
+    c3 = Card.load("3")
+    c4 = Card.load("4")
 
     assert c1.can_play_on(c1)
     assert c2.can_play_on(c1)
@@ -71,10 +72,10 @@ def test_all_cards():
     cards = Card.all_cards(numbers=[5, 2, 7])
     # print(cards)
     cnt_of_one_type = Card.count_cards_of_one_type
-    expected_cards = cnt_of_one_type*[
-        Card.load('5'),
-        Card.load('2'),
-        Card.load('7'),
+    expected_cards = cnt_of_one_type * [
+        Card.load("5"),
+        Card.load("2"),
+        Card.load("7"),
     ]
     assert cards == expected_cards
 
