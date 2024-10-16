@@ -38,17 +38,11 @@ class Hand:
 
     def score(self):
         """Штрафные очки"""
-        res = 0
-        score_all_cards_list = [] # счет всех карт
-        for c in self.cards:
-            score_all_cards_list.append(c.score())
-        score_unique_cards_set = set(score_all_cards_list) # множество счета всех уникальных карт
-        score_unique_cards_list = list() # список счета всех уникальных карт
-        for i in score_unique_cards_set:
-            score_unique_cards_list.append(i)
-        for k in score_unique_cards_list:
-            res += k
-        return res
+        score = 0 # счет очков
+        unique_cards = set(self.cards)
+        for c in unique_cards:
+            score += c.score()
+        return score
 
     def playable_cards(self, top_card: Card) -> [Card]:
         """Какие карты можно сыграть"""
