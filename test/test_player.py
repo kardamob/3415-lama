@@ -28,6 +28,11 @@ def test_eq():
     p1 = Player(name="Alex", hand=h1, score=10)
     p2 = Player(name="Alex", hand=h2, score=10)
     assert p1 == p2
+    h1 = Hand.load("1 3 2")
+    h2 = Hand.load("1 3 2")
+    p1 = Player(name="Ivan", hand=h1, score=10)
+    p2 = Player(name="Alex", hand=h2, score=10)
+    assert p1 != p2
 
 
 def test_load():
