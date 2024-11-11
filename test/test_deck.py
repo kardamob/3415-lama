@@ -68,3 +68,10 @@ def test_shuffle_2():
 
     deck.shuffle()
     assert deck.save() == "2 5 5 5 5 2 5 2 7 2 5 7 7 5 2 2 5 2 7 7 7 7 7 2"
+
+def test_is_empty():
+    deck = Deck([])
+    assert deck.is_empty()
+
+    deck = Deck([Card(4)])
+    assert not deck.is_empty()

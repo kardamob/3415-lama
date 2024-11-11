@@ -38,3 +38,7 @@ class Deck:
 
     def shuffle(self):
         random.shuffle(self.cards)
+
+    def is_empty(self) -> bool:
+        """ Проверка пустая ли колода """
+        return len(self.cards) == 0
