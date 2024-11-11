@@ -24,7 +24,7 @@ def test_load():
 
 
 def test_score():
-    h = Hand.load("3 3 1 7 7")
+    h = Hand.load("3 3 1 7 7") # 7 - Лама (10 очков)
     assert h.score() == 14
 
     h = Hand.load("2 4")
@@ -45,3 +45,13 @@ def test_remove_card():
     c = Card.load("7")
     h.remove_card(c)
     assert repr(h) == "3 1 2 5"
+
+def test_markers():
+    h = Hand.load("3 3 1 7 7")
+    assert Hand.markers(h) == (1, 4)
+
+    h = Hand.load("7 7 7 7 7")
+    assert Hand.markers(h) == (1, 0)
+
+    h = Hand.load("2 7 6 5 5")
+    assert Hand.markers(h) == (2, 3)
