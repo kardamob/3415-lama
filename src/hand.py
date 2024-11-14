@@ -5,7 +5,7 @@ from src.card import Card
 
 
 class Hand:
-    def __init__(self, cards: list[Card] | None = None):
+    def __init__(self, cards: list[Card] = None):
         if cards is None:
             # может быть пустая рука
             cards = []
@@ -15,39 +15,42 @@ class Hand:
         return self.save()
 
     def __eq__(self, other):
-        if isinstance(other, str):
-            other = Hand.load(other)
-        return self.cards == other.cards
-
-
+        """ """
+        if isinstance(other, str): # если переменная other - str, то
+            other = Hand.load(other) # переприсваиваем перменной other значение метода load класса Hand
+        return self.cards == other.cards # возвращаем
 
     def save(self) -> str:
-        """Convert deck to string in '4 7 1' format."""
+        """Конвертирует колоду в '4 7 1' формат."""
         scards = [c.save() for c in self.cards]  # ['4', '7', '1']
         s = " ".join(scards)
         return s
 
     @classmethod
     def load(cls, text: str) -> typing.Self:
-        """Convert string in '4 7 1' format to Deck. Return deck."""
+        """Конвертирует строку '4 7 1' формата в класс Deck. Возвращает обратно атрибут класса Deck."""
         cards = [Card.load(s) for s in text.split()]
         return cls(cards=cards)
 
     def add_card(self, card: Card):
+        """Добавляет карту в руку"""
         self.cards.append(card)
 
     def remove_card(self, card: Card):
+        """Удаляет карту из руки"""
         self.cards.remove(card)
 
     def score(self):
         """Штрафные очки"""
-        score = 0
-        """Не работает код"""
+
+        # """Нерабочий код"""
         # score = 0
         # unique_cards = set(self.cards)
         # for c in unique_cards:
         #     score += c.score()
         # return score
+
+        score = 0
         score_all_cards_list = []  # счет всех карт
         for c in self.cards:
             score_all_cards_list.append(c.score())
@@ -60,6 +63,7 @@ class Hand:
         return [c for c in self.cards if c.can_play_on(top_card)]
 
     def markers(self):
+        """Подсчет маркеров"""
         if Hand.score(Hand(self.cards)) < 10:
             white_markers = Hand.score(Hand(self.cards))
             black_markers = 0
@@ -68,3 +72,7 @@ class Hand:
             black_markers = math.floor((Hand.score(Hand(self.cards)))/10)
             white_markers = Hand.score(Hand(self.cards)) - black_markers*10
             return black_markers, white_markers
+
+    @staticmethod
+    def clear():
+        return list()

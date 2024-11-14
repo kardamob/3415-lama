@@ -55,3 +55,7 @@ def test_markers():
 
     h = Hand.load("2 7 6 5 5")
     assert Hand.markers(h) == (2, 3)
+
+def test_clear():
+    h = Hand.load("2 7 6 5 5")
+    assert h.clear() == list()
