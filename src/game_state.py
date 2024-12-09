@@ -14,10 +14,12 @@ class GameState:
         self.__current_player: int = current_player
 
     @property #свойство класса
-    def current_player_index(self):   # возвращает индекс текущего игрока
+    def current_player_index(self):
+        """ Возвращает индекс текущего игрока """
         return self.__current_player
 
-    def current_player(self) -> Player: # возвращает
+    def current_player(self) -> Player:
+        """" Возвращает информацию о текущем игроке """
         return self.players[self.__current_player]
 
     def __eq__(self, other):
@@ -33,7 +35,8 @@ class GameState:
             return False
         return True
 
-    def save(self) -> dict: # возвращает состояние игрока
+    def save(self) -> dict:
+        """" Возвращает состояние игрока """
         return {
             "top": str(self.top),
             "deck": str(self.deck),
@@ -99,15 +102,17 @@ class GameState:
         while True:
             action = input(f"{current_player.name}, выберите действие (играть/взять/сбросить): ").strip().lower()
             if action == "играть":
-                card_value = input("Введите значение карты, которую хотите сыграть: ")
+                card_value = input("Введите карту, которую хотите сыграть: ")
+                card_value.strip().lower()
+                if card_value == "лама":
+                    card_value = 7
                 try:
                     card = Card(int(card_value))  # Пробуем создать карту
                     if card in current_player.hand.cards:
                         self.play_card(card)
                         print(f"{current_player.name} играет {card}")
                         break
-                    else:
-                        print("Такой карты нет в руке.")
+                    print("Такой карты нет в руке. Введите карту заново.")
                 except ValueError:
                     print("Недопустимое значение карты.")
             elif action == "взять":

@@ -41,13 +41,6 @@ def test_load():
     assert c == Card(7)
 
 
-def test_divzero():
-    # пример теста с ловлей исключения
-    with pytest.raises(ZeroDivisionError):
-        x = 2 / 0
-        # y = 3 / 15
-
-
 def test_validation():
     with pytest.raises(ValueError):
         Card(10)

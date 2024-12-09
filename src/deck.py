@@ -22,8 +22,8 @@ class Deck:
 
     def save(self) -> str:
         """Convert deck to string in 'b4 g7 y0' format."""
-        scards = [c.save() for c in self.cards]  # ['4', '7', '1']
-        s = " ".join(scards)
+        list_cards = [c.save() for c in self.cards]  # ['4', '7', '1']
+        s = " ".join(list_cards)
         return s
 
     @classmethod

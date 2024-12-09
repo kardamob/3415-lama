@@ -10,6 +10,7 @@ class Player:
         self.name = name
         self.hand = hand
         self.score = score
+        self.quit = False # игрок решил закончить игру
 
     def __str__(self):
         return f"{self.name}({self.score}): {self.hand}"

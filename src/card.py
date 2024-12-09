@@ -17,7 +17,6 @@ class Card:
         self.number = number
 
     def __repr__(self):
-        # '6'
         return f"{self.number}"
 
     def __eq__(self, other):
@@ -31,6 +30,9 @@ class Card:
         ind_self = self.NUMBERS.index(self.number)
         ind_other = self.NUMBERS.index(other.number)
         return ind_self < ind_other
+
+    def __hash__(self):
+        return self.number
 
     def save(self):
         return repr(self)

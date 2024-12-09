@@ -47,13 +47,13 @@ def test_remove_card():
     assert repr(h) == "3 1 2 5"
 
 def test_markers():
-    h = Hand.load("3 3 1 7 7")
+    h = Hand.load("3 3 1 7 7").score()
     assert Hand.markers(h) == (1, 4)
 
-    h = Hand.load("7 7 7 7 7")
+    h = Hand.load("7 7 7 7 7").score()
     assert Hand.markers(h) == (1, 0)
 
-    h = Hand.load("2 7 6 5 5")
+    h = Hand.load("2 7 6 5 5").score()
     assert Hand.markers(h) == (2, 3)
 
 def test_clear():
