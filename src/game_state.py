@@ -9,7 +9,7 @@ class GameState:
             self, players: list[Player], deck: Deck, top: Card, current_player: int = 0
     ):
         self.players: list[Player] = players
-        self.deck: Deck = deck
+        self.deck: Deck = deck # колода, откуда берем карты
         self.top: Card = top
         self.__current_player: int = current_player
 
