@@ -91,8 +91,23 @@ def test_next_player():
 def test_draw_card():
     game = GameState.load(data)
     assert game.deck == "5"
-    assert game.current_player().hand == "g5"
+    assert game.current_player().hand == "5"
 
     game.draw_card()
-    assert game.deck == "g2 y6"
-    assert game.current_player().hand == "g5 b0"
+    assert game.deck == ""
+    assert game.current_player().hand == "5 5"
+
+
+def test_play_card_1():
+    players = [alex, bob, charley]
+    game = GameState(
+        players=players, deck=full_deck, top=Card.load("y7"), current_player=2
+    )
+
+    assert game.current_player().hand == "7 1 2"
+    assert game.top == "7"
+
+    game.play_card(Card.load("1"))
+    assert game.current_player().hand == "7 2"
+    assert game.top == "1"
+
