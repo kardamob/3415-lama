@@ -52,15 +52,10 @@ class Card:
     def all_cards(numbers: None | list[int] = None):
         if numbers is None:
             numbers = Card.NUMBERS
-        # cards = []
-        # for i in range(Card.count_cards_of_one_type):
-        #     for num in numbers:
-        #         cards.append(Card(number=num))
-        cards = [
-            Card(number=num)
-            for _ in range(Card.count_cards_of_one_type)
-            for num in numbers
-        ]
+        cards = []
+        for i in range(Card.count_cards_of_one_type):
+            for num in numbers:
+                cards.append(Card(number=num))
         return cards
 
     def score(self):
